@@ -40,6 +40,20 @@ const Clients = () => {
     setOpenSuccessSnack(false);
   };
 
+  const handleSearch = async ({ target: { value } }: { target: { value: string } }) => {
+    if (value.length > 1) {
+      try {
+        const data = await ClientService.filter(value);
+        setClients(data.result);
+      } catch (err) {
+        console.error(err);
+        setClients([]);
+      }
+    } else {
+      getClients();
+    }
+  };
+
   const getClients = async () => {
     const data = await ClientService.list();
     setClients(data.result);
@@ -98,7 +112,16 @@ const Clients = () => {
       <Navbar />
       <Box sx={{ width: '100%', height: 'calc(100vh - 10rem)' }}>
         <Box sx={{ margin: '.5rem 1rem 1rem 1rem', display: 'flex', justifyContent: 'end' }}>
-          <Button variant="contained" onClick={ handleOpenModal }>Novo Cliente</Button>
+          <TextField
+            id="filled-search"
+            label="Pesquisar"
+            type="search"
+            onChange={ handleSearch }
+            placeholder="Nome ou E-mail"
+          />
+          <Button variant="contained" onClick={ handleOpenModal } sx={{ ml: '2rem' }}>
+            Novo Cliente
+          </Button>
         </Box>
         <Modal
           open={ openModal }

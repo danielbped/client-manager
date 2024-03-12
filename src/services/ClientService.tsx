@@ -26,5 +26,14 @@ export default {
       console.error(err);
       throw new Error('Ocorreu um erro ao criar um novo cliente.')
     }
-  }
+  },
+  async filter(query: string) {
+    try {
+      const result = await axios.get(`http://localhost:3000/client/${query}`);
+      return result.data;
+    } catch (err) {
+      console.error(err);
+      return [];
+    }
+  },
 }
