@@ -1,17 +1,17 @@
-import { BrowserRouter, Route, Routes as Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Clients from './pages/Clients';
-import Navbar from './components/Navbar';
 import { Box } from '@mui/material';
+import Login from './pages/Login';
 
-const Routes = () => (
+const App = () => (
   <BrowserRouter>
-  <Box sx={{ pt: '5rem' }}>
-    <Navbar />
-    <Switch>
-      <Route path="/clients" element={ <Clients/> } />
-    </Switch>
-  </Box>
+    <Box sx={{ pt: '5rem' }}>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/clients" element={<Clients />} />
+      </Routes>
+    </Box>
   </BrowserRouter>
-)
+);
 
-export default Routes;
+export default App;
