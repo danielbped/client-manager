@@ -1,6 +1,6 @@
 import axios from "axios";
 
-interface Client {
+export interface Client {
   id?: string;
   name: string;
   email: string;
@@ -12,6 +12,15 @@ export default {
   async list() {
     try {
       const result = await axios.get("http://localhost:3000/client");
+      return result.data;
+    } catch (err) {
+      console.error(err);
+      return [];
+    }
+  },
+  async listBestRoute() {
+    try {
+      const result = await axios.get("http://localhost:3000/client/route");
       return result.data;
     } catch (err) {
       console.error(err);
