@@ -100,7 +100,7 @@ const Graph = () => {
   return (
     <Box>
       <Navbar />
-      <Box>
+      <Box sx={{ margin: '1rem' }}>
         <Typography variant="h4">
           Rotas
         </Typography>
